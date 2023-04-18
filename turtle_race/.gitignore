@@ -1,0 +1,30 @@
+# created by virtualenv automatically
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+*.egg-info/*
+
+# Distribution / packaging
+.Python
+env/
+bin/
+include/
+lib/
+local/
+pip-selfcheck.json
+
+# Project specific
+*.log
+*.pot
+*.pyc
+.idea/
+.vscode/
+*.sublime-workspace
+
