@@ -9,8 +9,6 @@ RIGHT = 0
 class Snake:
     def __init__(self):
         """
-        No Parameters
-
         Initializes a new Snake object with default values for snake color, spacing, distance, segments, and head.
         Creates a snake body with three segments.
         """
@@ -23,8 +21,6 @@ class Snake:
 
     def create_snake(self):
         """
-        No Parameters
-
         Creates a snake body with three segments.
         """
         for i in range(3):
@@ -36,8 +32,6 @@ class Snake:
 
     def move(self):
         """
-        No Parameters
-
         Moves the snake forward by one square.
         """
         for i in range(len(self.segments) - 1, 0, -1):
@@ -48,8 +42,6 @@ class Snake:
 
     def up(self):
         """
-        No Parameters
-
         Changes the direction of the snake's head to up, but only if the current direction is not down.
         """
         if self.head.heading() != DOWN:
@@ -57,8 +49,6 @@ class Snake:
 
     def down(self):
         """
-        No Parameters
-
         Changes the direction of the snake's head to down, but only if the current direction is not up.
         """
         if self.head.heading() != UP:
@@ -66,8 +56,6 @@ class Snake:
 
     def left(self):
         """
-        No Parameters
-
         Changes the direction of the snake's head to left, but only if the current direction is not right.
         """
         if self.head.heading() != RIGHT:
@@ -75,8 +63,6 @@ class Snake:
 
     def right(self):
         """
-        No Parameters
-
         Changes the direction of the snake's head to right, but only if the current direction is not left.
         """
         if self.head.heading() != LEFT:
