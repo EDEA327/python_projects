@@ -32,8 +32,16 @@ game_is_on = True
 while game_is_on:
     screen.update()
     time.sleep(0.1)
-    for segment in segments:
-        segment.forward(20)
+    # Makes the segments of the snake move evenly.
+    for segment_number in range(len(segments) - 1, 0, -1):
+        new_x = segments[segment_number - 1].xcor()
+        new_y = segments[segment_number - 1].ycor()
+        segments[segment_number].goto(new_x, new_y)
+    segments[0].forward(20)
+    
+
+
+
 
 # Keep the window open
 screen.exitonclick()
