@@ -1,4 +1,9 @@
 from turtle import Turtle
+# Constants
+UP = 90
+DOWN = 270
+LEFT = 180
+RIGHT = 0
 
 
 class Snake:
@@ -7,8 +12,11 @@ class Snake:
         self.square_spacing = -20
         self.distance = 20
         self.segments = []
+        self.create_snake()
+        self.head = self.segments[0]
 
         # Create a snake body with three segments
+    def create_snake(self):
         for i in range(3):
             new_segment = Turtle(shape="square")
             new_segment.color(self.snake_color)
@@ -22,17 +30,21 @@ class Snake:
             new_x = self.segments[i - 1].xcor()
             new_y = self.segments[i - 1].ycor()
             self.segments[i].goto(new_x, new_y)
-        self.segments[0].forward(self.distance)
+        self.head.forward(self.distance)
 
     def up(self):
-        self.segments[0].setheading(90)
+        if self.head.heading() != DOWN:
+            self.head.setheading(UP)
 
     def down(self):
-        self.segments[0].setheading(270)
+        if self.head.heading() != UP:
+            self.head.setheading(DOWN)
 
     def left(self):
-        self.segments[0].setheading(180)
+        if self.head.heading() != RIGHT:
+            self.head.setheading(LEFT)
 
     def right(self):
-        self.segments[0].setheading(0)
+        if self.head.heading() != LEFT:
+            self.head.setheading(RIGHT)
 
