@@ -8,15 +8,20 @@ screen.title("Snake Game")
 
 # Crete the  initial snake
 # # Drawing white squares
-turtles = []
-for _ in range(3):
-    t = Turtle(shape="square")
-    t.color("white")
-    turtles.append(t)
+# SQUARE_SIZE = 20
+SQUARE_COLOR = "white"
+SQUARE_SPACING = -20
 
-# # Placing the squares next to each other
-turtles[1].goto(x=-20, y=0)
-turtles[2].goto(x=-40, y=0)
+turtles = []
+
+# Create and add the three Turtle objects to the 'turtles' list
+for i in range(3):
+    t = Turtle(shape="square")
+    t.color(SQUARE_COLOR)
+    # t.shapesize(stretch_wid=SQUARE_SIZE, stretch_len=SQUARE_SIZE)
+    t.penup()
+    t.goto(x=i*SQUARE_SPACING, y=0)
+    turtles.append(t)
 
 # Keep the window open
 screen.exitonclick()
