@@ -42,7 +42,7 @@ while game_is_on:
         food.change_position()
         scoreboard.score += 1
         scoreboard.clear()
-        scoreboard.draw_score()
+        scoreboard.update_score()
 
 # Keep the window open
 screen.exitonclick()
