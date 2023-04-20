@@ -1,4 +1,5 @@
 from turtle import Turtle
+
 # Constants
 UP = 90
 DOWN = 270
@@ -22,18 +23,42 @@ class Snake:
     def create_snake(self):
         """
         Creates a snake body with three segments.
+        If self.growth is greater than zero,
+        the length of the snake is increased by the value of self.growth
         """
-        for i in range(3):
-            new_segment = Turtle(shape="square")
-            new_segment.color(self.snake_color)
-            new_segment.penup()
-            new_segment.goto(x=i * self.square_spacing, y=0)
-            self.segments.append(new_segment)
+        # Creates a snake with three segments
+        for _ in range(3):
+            self.add_segment()
+
+    def add_segment(self):
+        """
+        Adds a new segment to the snake's body.
+        """
+        # Creates a new segment with a square shape, sets its color and position,
+        # and appends it to the snake's segments list
+
+        new_segment = Turtle(shape="square")
+        new_segment.color(self.snake_color)
+        new_segment.penup()
+        if len(self.segments) == 0:
+            new_segment.goto(0, 0)
+        else:
+            last_segment = self.segments[-1]
+            new_segment.goto(last_segment.position())
+        self.segments.append(new_segment)
+
+    def extend(self):
+        """
+        Extends the length of the snake by adding a new segment.
+        """
+        self.add_segment()
 
     def move(self):
         """
         Moves the snake forward by one square.
         """
+        # Moves each segment of the snake to the position of the segment in front of it, except for the head,
+        # which is moved forward by one square.
         for i in range(len(self.segments) - 1, 0, -1):
             new_x = self.segments[i - 1].xcor()
             new_y = self.segments[i - 1].ycor()
@@ -67,5 +92,3 @@ class Snake:
         """
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
-
-
