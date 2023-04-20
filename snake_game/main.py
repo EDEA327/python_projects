@@ -1,6 +1,8 @@
 import time
 from turtle import Screen
+
 from snake import Snake
+from food import Food
 
 # Set up the screen
 screen = Screen()
@@ -11,6 +13,9 @@ screen.tracer(0)  # Turn off animation
 
 # Create the initial snake
 snake = Snake()
+
+# Create the food
+food = Food()
 
 # Event listeners
 screen.listen()
