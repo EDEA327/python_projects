@@ -34,10 +34,12 @@ class ScoreBoard(Turtle):
         """
         Updates the displayed score on the scoreboard turtle.
         """
+        self.clear()
         self.write(f"Score: {self.score}", align=ALIGNMENT, font=FONT)
         self.score += 1
 
     def game_over(self):
+        self.color("red")
         self.home()
         self.write("GAME OVER", align=ALIGNMENT, font=FONT)
 
