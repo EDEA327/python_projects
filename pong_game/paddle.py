@@ -1,8 +1,6 @@
 from turtle import Turtle
 
-from typing import Tuple, List
-
-POSITIONS: List[Tuple[int, int]] = [(350, 0), (-350, 0)]
+from typing import Tuple
 
 
 class Paddle(Turtle):
@@ -18,23 +16,23 @@ class Paddle(Turtle):
         move(direction: str): Moves the Paddle object up or down.
     """
 
-    def __init__(self) -> None:
+    def __init__(self, pos: Tuple[int, int]) -> None:
         """
         Initializes the Paddle object.
         """
         super().__init__()
-        self.create()
+        self.pos = pos
+        self.create(pos)
 
-    def create(self) -> None:
+    def create(self, position) -> None:
         """
         Creates the Paddle object.
         """
-        for position in POSITIONS:
-            self.penup()
-            self.goto(position)
-            self.shape("square")
-            self.shapesize(stretch_wid=5, stretch_len=1)
-            self.color("white")
+        self.penup()
+        self.goto(position)
+        self.shape("square")
+        self.shapesize(stretch_wid=5, stretch_len=1)
+        self.color("white")
 
     def move(self, direction: str) -> None:
         """
@@ -54,4 +52,3 @@ class Paddle(Turtle):
             self.sety(current_y + 20)
         elif direction == 'down' and current_y > min_y:
             self.sety(current_y - 20)
-
