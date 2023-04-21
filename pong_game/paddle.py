@@ -10,13 +10,15 @@ class Paddle(Turtle):
         self.shapesize(stretch_wid=5, stretch_len=1)
         self.color("white")
 
-    def up(self):
-        if self.ycor() < 250:
-            self.sety(self.ycor() + 20)
+    def move(self, direction):
+        max_y = 250
+        min_y = -250
+        current_y = self.ycor()
+        if direction == 'up' and current_y < max_y:
+            self.sety(current_y + 20)
+        elif direction == 'down' and current_y > min_y:
+            self.sety(current_y - 20)
 
-    def down(self):
-        if self.ycor() > -250:
-            self.sety(self.ycor() - 20)
 
 
 

@@ -12,7 +12,9 @@ paddle = Paddle()
 
 # Event listeners
 screen.listen()
-screen.onkeypress(paddle.up, "Up")
-screen.onkeypress(paddle.down, "Down")
+# I used lambda to be able to define a function without arguments, which is what the onkeypress() method needs
+screen.onkeypress(lambda: paddle.move("up"), "Up")
+screen.onkeypress(lambda: paddle.move("down"), "Down")
+
 # Keep the window open
 screen.mainloop()
