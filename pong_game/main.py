@@ -3,6 +3,7 @@ from turtle import Screen
 import time
 from ball import Ball
 from paddle import Paddle
+from scoreboard import Scoreboard
 
 
 def main() -> None:
@@ -23,6 +24,9 @@ def main() -> None:
     # Creating the ball
     ball: Ball = Ball()
 
+    # Creating the scoreboard
+    scoreboard: Scoreboard = Scoreboard()
+
     # Event listeners
     screen.listen()
     # I used lambda to be able to define a function without arguments, which is what the onkeypress() method needs
@@ -35,7 +39,7 @@ def main() -> None:
     game_on: bool = True
 
     while game_on:
-        time.sleep(0.1)
+        time.sleep(ball.move_speed)
         screen.update()
         ball.move()
 
@@ -44,17 +48,19 @@ def main() -> None:
             ball.bounce_y()
 
         # Check if the ball has collided with a paddle
-        if (ball.distance(r_paddle) < 50 and ball.xcor() > 320) or (
-                    ball.distance(l_paddle) < 50 and ball.xcor() < -320):
+        if ball.distance(r_paddle) < 50 and ball.xcor() > 320 or (ball.distance(l_paddle) < 50 and ball.xcor() < -320):
             ball.bounce_x()
 
         # Check if the ball has gone out of bounds
+        # R paddle misses
         if ball.xcor() > 380:
+            scoreboard.l_point()
             ball.reset_position()
-            ball.setheading(random.choice([135, 225]))  # Move to a random corner
-        elif ball.xcor() < -380:
+
+        # L paddle misses
+        if ball.xcor() < -380:
+            scoreboard.r_point()
             ball.reset_position()
-            ball.setheading(random.choice([45, 315]))  # Move to a random corner
 
     # Keep the window open
     screen.mainloop()
