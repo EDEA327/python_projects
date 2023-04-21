@@ -24,7 +24,7 @@ class Paddle(Turtle):
         self.pos = pos
         self.create(pos)
 
-    def create(self, position) -> None:
+    def create(self, position: Tuple[int, int]) -> None:
         """
         Creates the Paddle object.
         """
