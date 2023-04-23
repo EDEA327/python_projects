@@ -18,11 +18,10 @@ class Food(Turtle):
         self.speed("fastest")
         self.change_position()
 
-    def change_position(self):
+    def change_position(self) -> None:
+        """
+        Changes the position of the food object to a random position within the screen boundaries.
+        """
         random_x = random.randint(-280, 280)
         random_y = random.randint(-280, 280)
         self.goto(random_x, random_y)
-
-
-
-

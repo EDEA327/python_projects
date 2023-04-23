@@ -1,6 +1,7 @@
 from turtle import Turtle
-ALIGNMENT = "center"
-FONT = ("Times New Roman", 24, "normal")
+
+ALIGNMENT: str = "center"
+FONT: tuple = ("Times New Roman", 24, "normal")
 
 
 class ScoreBoard(Turtle):
@@ -14,23 +15,23 @@ class ScoreBoard(Turtle):
 
     Methods
     -------
-    update_score():
+    update_score() -> None:
         Updates the displayed score on the scoreboard turtle.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Constructs the scoreboard object and initializes its attributes.
         """
         super().__init__()
-        self.score = 0
+        self.score: int = 0
         self.color("white")
         self.penup()
         self.goto(0, 265)
         self.hideturtle()
         self.update_score()
 
-    def update_score(self):
+    def update_score(self) -> None:
         """
         Updates the displayed score on the scoreboard turtle.
         """
@@ -38,8 +39,10 @@ class ScoreBoard(Turtle):
         self.write(f"Score: {self.score}", align=ALIGNMENT, font=FONT)
         self.score += 1
 
-    def game_over(self):
+    def game_over(self) -> None:
+        """
+        Displays the game over message on the scoreboard turtle.
+        """
         self.color("red")
         self.home()
         self.write("GAME OVER", align=ALIGNMENT, font=FONT)
-
