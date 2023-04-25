@@ -1,4 +1,4 @@
-# TODO: Create a letter using starting_letter.txt
+
 def main():
 
     # for each name in invited_names.txt
@@ -17,9 +17,6 @@ def main():
 if __name__ == '__main__':
     main()
 
-
-
-    
 # Hint1: This method will help you: https://www.w3schools.com/python/ref_file_readlines.asp
 # Hint2: This method will also help you: https://www.w3schools.com/python/ref_string_replace.asp
 # Hint3: THis method will help you: https://www.w3schools.com/python/ref_string_strip.asp
