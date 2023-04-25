@@ -43,13 +43,15 @@ def main():
 
         # Detect collisions with cars
         for car in car_manager.all_cars:
-            if player.distance(car) < 10:
+            if car.distance(player) < 20:
                 game_on = False
                 level.game_over()
 
-        # New level
+        # Successful cross
         if player.reached_goal():
             level.update_level()
+            player.reset_position()
+            car_manager.increment_speed()
 
     # Keep the screen open
     screen.mainloop()
