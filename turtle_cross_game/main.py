@@ -1,6 +1,7 @@
 import time
 from turtle import Screen
 
+from car_manager import CarManager
 from player import Player
 
 
@@ -15,15 +16,27 @@ def main():
     # Creates a player
     player = Player()
 
+    # Create the cars
+    car_manager = CarManager()
+
     # Event listeners
     screen.listen()
     screen.onkeypress(player.move, "Up")
 
     # Game loop
     game_on = True
+    frequency = 0
     while game_on:
         time.sleep(0.1)
         screen.update()
+
+        if frequency % 6 == 0:
+            car_manager.create_car()
+
+        car_manager.move_cars()
+        
+        frequency += 1
+
 
     # Keep the screen open
     screen.mainloop()

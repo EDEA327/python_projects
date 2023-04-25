@@ -11,10 +11,14 @@ class Player(Turtle):
         self.shape("turtle")
         self.setheading(90)
         self.penup()
+        self.reset_position()
+
+    def reset_position(self):
+
         self.goto(x=0, y=-280)
 
     def move(self):
-        self.forward(10)
+        self.forward(MOVE_DISTANCE)
 
 
 
