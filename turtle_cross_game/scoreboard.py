@@ -27,4 +27,4 @@ class Scoreboard(Turtle):
         """
         self.color("red")
         self.home()
-        self.write("GAME OVER", font=FONT)
+        self.write("GAME OVER", align="center", font=FONT)
