@@ -3,6 +3,7 @@ from turtle import Screen
 
 from car_manager import CarManager
 from player import Player
+from scoreboard import Scoreboard
 
 
 def main():
@@ -19,6 +20,9 @@ def main():
     # Create the cars
     car_manager = CarManager()
 
+    # Crete the level indicator
+    level = Scoreboard()
+
     # Event listeners
     screen.listen()
     screen.onkeypress(player.move, "Up")
@@ -29,14 +33,23 @@ def main():
     while game_on:
         time.sleep(0.1)
         screen.update()
-
+        # every 0.6 seconds a new car is created
         if frequency % 6 == 0:
             car_manager.create_car()
 
         car_manager.move_cars()
-        
+
         frequency += 1
 
+        # Detect collisions with cars
+        for car in car_manager.all_cars:
+            if player.distance(car) < 10:
+                game_on = False
+                level.game_over()
+
+        # New level
+        if player.reached_goal():
+            level.update_level()
 
     # Keep the screen open
     screen.mainloop()

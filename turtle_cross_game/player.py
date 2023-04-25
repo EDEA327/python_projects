@@ -13,14 +13,11 @@ class Player(Turtle):
         self.penup()
         self.reset_position()
 
-    def reset_position(self):
+    def reached_goal(self):
+        return self.ycor() > FINISH_LINE_Y
 
+    def reset_position(self):
         self.goto(x=0, y=-280)
 
     def move(self):
         self.forward(MOVE_DISTANCE)
-
-
-
-
-
