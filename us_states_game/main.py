@@ -15,10 +15,10 @@ import pandas as pd
 # print((monday.temp * 1.8) + 32)
 
 # Create a dataframe from scratch
-data_dict = {
-    "students": ["Jose", "Mar", "Aroldo"],
-    "scores": [76, 89, 99]
-}
-data = pd.DataFrame(data_dict)
-data.to_csv("student_data.csv")
+# data_dict = {
+#     "students": ["Jose", "Mar", "Aroldo"],
+#     "scores": [76, 89, 99]
+# }
+# data = pd.DataFrame(data_dict)
+# data.to_csv("student_data.csv")
 
