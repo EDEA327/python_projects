@@ -43,5 +43,5 @@ data_dict = {
 }
 # t.onclick(get_click_coors)
 data = pd.DataFrame(data_dict)
-data.to_csv("colombian_departments.csv")
+data.to_csv("colombian_departments.csv", index=False)
 screen.mainloop()
