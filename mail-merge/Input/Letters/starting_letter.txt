@@ -1,0 +1,7 @@
+Dear [name],
+
+You are in my mail-merge project.
+
+this is the project of day 24 of the bootcamp.
+
+Erick
