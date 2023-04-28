@@ -26,6 +26,8 @@ def ask_for_department(data: pd.DataFrame, guessed_dep: list) -> str:
     if title_guess in data["Departments"].tolist() and title_guess not in guessed_dep:
         guessed_dep.append(title_guess)
         return title_guess
+    if title_guess == "Exit":
+        return "Exit"
 
 
 def draw_department(department_data: pd.DataFrame) -> None:
@@ -35,6 +37,16 @@ def draw_department(department_data: pd.DataFrame) -> None:
     billie.penup()
     billie.goto(int(department_data.x), int(department_data.y))
     billie.write(department_data["Departments"].item())
+
+
+def generate_missing_departments_file(data: pd.DataFrame, guessed_dep: list) -> None:
+    """Create a CSV file with the names of the departments that were not guessed."""
+    missing_dep = []
+    for dep in data["Departments"]:
+        if dep not in guessed_dep:
+            missing_dep.append(dep)
+    new_data = pd.DataFrame(missing_dep)
+    new_data.to_csv("departments_to_learn.csv", index=False)
 
 
 def main() -> None:
@@ -50,11 +62,11 @@ def main() -> None:
     while len(guessed_dep) < 32:
         answer = ask_for_department(data, guessed_dep)
         if answer:
+            if answer == "Exit":
+                generate_missing_departments_file(data, guessed_dep)
+                break
             dep_data = data[data["Departments"] == answer]
             draw_department(dep_data)
-
-    # Keep window open
-    screen.mainloop()
 
 
 if __name__ == "__main__":
