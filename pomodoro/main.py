@@ -12,6 +12,7 @@ SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 reps = 0
 
+
 # ---------------------------- TIMER RESET ------------------------------- #
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
@@ -24,11 +25,16 @@ def start_timer():
 
     if reps % 8 == 0:
         count_down(long_break)
+        timer_label.config(text="Long break", fg=RED)
     elif reps % 2 == 0:
         count_down(short_break)
+        timer_label.config(text="Short break", fg=PINK)
     else:
         count_down(work_sec)
-# ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
+        timer_label.config(text="Work Time", fg=GREEN)
+
+
+# ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def count_down(count):
     count_min = math.floor(count / 60)
     count_sec = count % 60
@@ -37,6 +43,13 @@ def count_down(count):
     canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}")
     if count > 0:
         window.after(1000, count_down, count - 1)
+    else:
+        start_timer()
+        marks = ""
+        work_sessions = math.floor(reps / 2)
+        for _ in range(work_sessions):
+            marks += "✅"
+        check_mrk.config(text=marks)
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -60,7 +73,7 @@ start_btn.grid(column=0, row=3)
 reset_btn = tk.Button(text="Reset", highlightthickness=0)
 reset_btn.grid(column=3, row=3)
 
-check_mrk = tk.Label(text="✅", fg=GREEN, bg=YELLOW)
+check_mrk = tk.Label(fg=GREEN, bg=YELLOW)
 check_mrk.grid(column=1, row=3, pady=20)
 
 window.mainloop()
