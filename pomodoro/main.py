@@ -22,6 +22,8 @@ def reset_timer():
     check_mrk.config(text="")
     global reps
     reps = 0
+
+
 # ---------------------------- TIMER MECHANISM ------------------------------- #
 def start_timer():
     global reps
