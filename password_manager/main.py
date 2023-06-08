@@ -1,3 +1,4 @@
+import json
 from random import randint, shuffle, choice
 from tkinter import *
 from tkinter import messagebox
@@ -32,6 +33,12 @@ def save():
     website = website_entry.get()
     username_email = username_email_entry.get()
     password = password_entry.get()
+    new_data = {
+        website: {
+            "email": username_email,
+            "password": password,
+        }
+    }
 
     if len(website) == 0 or len(password) == 0:
         messagebox.showinfo(title="Oops!", message="Please make sure you haven't left any fields empty")
@@ -42,8 +49,8 @@ def save():
                                                f"\n Password: {password} \n Is it ok to save?")
 
         if is_ok:
-            with open("passwords.txt", "a") as df:
-                df.write(f"{website} | {username_email} | {password}\n")
+            with open("passwords.json", "w") as df:
+                json.dump(new_data, df, indent=4)
                 website_entry.delete(0, END)
                 password_entry.delete(0, END)
 
