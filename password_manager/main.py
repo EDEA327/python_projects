@@ -49,8 +49,22 @@ def save():
                                                f"\n Password: {password} \n Is it ok to save?")
 
         if is_ok:
-            with open("passwords.json", "w") as df:
-                json.dump(new_data, df, indent=4)
+            try:
+                with open("passwords.json", "r") as df:
+                    # Reading old data
+                    data = json.load(df)
+            except FileNotFoundError:
+                with open("passwords.json", "w") as df:
+                    # Creating new data
+                    json.dump(new_data, df, indent=4)
+            else:
+                # Updating the old data with the new data
+                data.update(new_data)
+
+                with open("passwords.json", "w") as df:
+                    # Saving the updated data
+                    json.dump(new_data, df, indent=4)
+            finally:
                 website_entry.delete(0, END)
                 password_entry.delete(0, END)
 
