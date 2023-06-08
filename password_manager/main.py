@@ -6,6 +6,23 @@ from tkinter import messagebox
 import pyperclip
 
 
+# ---------------------------- PASSWORD FINDER ------------------------------- #
+def find_password():
+    user_text = website_entry.get()
+
+    with open("passwords.json", "r") as f:
+        data = json.load(f)
+        try:
+            messagebox.showinfo(title="Password Finder",
+                                message=f"Website: {user_text} Password: {data[user_text]['password']}")
+        except FileNotFoundError:
+            messagebox.showinfo(title="Password Finder",
+                                message="No data file found")
+        except KeyError:
+            messagebox.showinfo(title="Password Finder",
+                                message=f"No details for the {user_text} exists")
+
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def passwordgen():
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
@@ -102,7 +119,7 @@ add_btn.grid(column=1, row=4, columnspan=2, pady=5)
 generate_password_btn = Button(text="Generate Password", command=passwordgen)
 generate_password_btn.grid(column=2, row=3)
 
-search_btn = Button(text="Search", width=14)
+search_btn = Button(text="Search", width=14, command=find_password)
 search_btn.grid(column=2, row=1, columnspan=2)
 
 window.mainloop()
