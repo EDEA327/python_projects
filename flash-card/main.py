@@ -20,7 +20,7 @@ def new_card() -> None:
     canvas.itemconfig(word, text=current_card["English"], fill="black")
     canvas.itemconfig(language, text="English", fill="black")
     canvas.itemconfig(card_bg, image=canvas_front_img)
-    window.after(3000, func=flip_card)
+    flip_timer = window.after(3000, func=flip_card)
 
 
 def flip_card() -> None:
