@@ -1,16 +1,19 @@
-# Imports
 from random import choice
 from tkinter import *
+from typing import Dict, Any, List
 
 import pandas as pd
 
 # Constants
-BACKGROUND_COLOR = "#B1DDC6"
-current_card = {}
+BACKGROUND_COLOR: str = "#B1DDC6"
+current_card: Dict[str, Any] = {}
 
 
 # Code
-def new_card():
+def new_card() -> None:
+    """
+    Function to display a new flashcard.
+    """
     global current_card, flip_timer
     window.after_cancel(flip_timer)
     current_card = choice(lang_data_list)
@@ -20,13 +23,19 @@ def new_card():
     window.after(3000, func=flip_card)
 
 
-def flip_card():
+def flip_card() -> None:
+    """
+    Function to flip the flashcard and display the translation.
+    """
     canvas.itemconfig(language, text="Español", fill="white")
     canvas.itemconfig(word, text=current_card["Español"], fill="white")
     canvas.itemconfig(card_bg, image=canvas_back_img)
 
 
-def is_known():
+def is_known() -> None:
+    """
+    Function to mark the flashcard as known and remove it from the list.
+    """
     lang_data_list.remove(current_card)
     data = pd.DataFrame(lang_data_list)
     data.to_csv("data/words_to_learn.csv", index=False)
@@ -38,10 +47,10 @@ try:
     lang_data = pd.read_csv("data/words_to_learn.csv")
 except FileNotFoundError:
     lang_data = pd.read_csv("data/1000 words in english - Hoja 1.csv")
-    lang_data_list = lang_data.to_dict(orient="records")
+    lang_data_list: List[Dict[str, Any]] = lang_data.to_dict(orient="records")
 else:
     lang_data_list = lang_data.to_dict(orient="records")
-# print(lang_data_list)
+
 # Window Setup
 window = Tk()
 window.title("Flash Card")
