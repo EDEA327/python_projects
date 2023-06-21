@@ -22,7 +22,7 @@ else:
             connection.sendmail(
                 from_addr=EMAIL,
                 to_addrs="pruebaspython@yahoo.com",
-                msg=to_send_motivation.encode('utf-8')
+                msg=f"Subject:Monday motivation \n\n {to_send_motivation}"
             )
             print("Sent message successfully")
 
