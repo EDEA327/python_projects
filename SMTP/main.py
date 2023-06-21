@@ -1,12 +1,30 @@
+import datetime as dt
+import random
 import smtplib
 
-email = "pruebascodigo0@gmail.com"
-password = "gobkowgsovaehans"
+EMAIL = "pruebascodigo0@gmail.com"
+PWD = "gobkowgsovaehans"
+now = dt.datetime.now()
+weekday = now.weekday()
 
-connection = smtplib.SMTP("smtp.gmail.com")
-connection.starttls()
-connection.login(user=email, password=password)
-connection.sendmail(from_addr=email, to_addrs="pruebaspython@yahoo.com",
-                    msg="Subject:Este es un mensaje de prueba\n\n Soy un mensaje")
+try:
+    with open("quotes.txt") as f:
+        motivations = f.readlines()
+        to_send_motivation = random.choice(motivations).strip()
+except FileNotFoundError:
+    print("File does not exist")
 
-connection.close()
+else:
+    with smtplib.SMTP("smtp.gmail.com") as connection:
+        connection.starttls()
+        connection.login(user=EMAIL, password=PWD)
+        if weekday == 2:
+            connection.sendmail(
+                from_addr=EMAIL,
+                to_addrs="pruebaspython@yahoo.com",
+                msg=to_send_motivation.encode('utf-8')
+            )
+            print("Sent message successfully")
+
+        else:
+            print("Nothing was sent")
